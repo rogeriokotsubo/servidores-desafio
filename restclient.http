@@ -1,0 +1,26 @@
+GET http://192.168.15.34:8000/users HTTP/1.1
+###
+
+PUT http://192.168.15.34:8000/users HTTP/1.1
+content-type: application/json
+
+{
+    "id": "31",
+    "name": "rogerio kotsuboff0",
+    "email": "rogeriokotsubo0@g"
+}
+###
+
+GET http://192.168.15.34:8000/users/1 HTTP/1.1
+###
+
+POST http://192.168.15.34:8000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "rogerio kotsubo7",
+    "email": "rogeriokotsubo7@gmail.com"
+}
+###
+
+DELETE http://192.168.15.34:8000/users/2 HTTP/1.1

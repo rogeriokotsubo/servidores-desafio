@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta property="og:description" content="Alpha Ed/tech - Servidores - Desafio" />
+        <meta property="og:url" content="https://rogeriokotsubo.github.io/servdores-04/" />
+        <meta property="og:determiner" content="a" />
+        <meta property="og:locale" content="pt_BR" /> 
+        <title>Servidores - Desafio</title>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <header>
+            <nav id="menu">
+                <span>FRONT API</span>
+            </nav>
+        </header>
+
+        <!-- CORPO DA PÁGINA -->
+        <main>
+            <section class="frm-title">
+                <p id="sec-title">FORMULÁRIO DE CADASTRO DE USUÁRIOS</p>
+                <p id="sec-subtitle">Para inserir usuários na lista, preencha os dados abaixo.</p>
+                <form id="frm-inputs">           
+                    <input type="text" id="name" name="name" placeholder="Nome Completo">
+                    <input type="email" id="email" name="email" placeholder="E-mail">
+                    <button id="btn-input" type="button">Cadastrar</button>
+                </form>
+                <p id="msg-p">&nbsp;</p>
+                <p id="sec-title">LISTA DE USUÁRIOS CADASTRADOS</p>
+                <p id="sec-subtitle">Abaixo, você pode ver os usuários registrados, podendo editá-los ou removê-los.</p>
+
+                <div id="ctn-table">
+                    <table id="tbl-users">
+                    </table>
+                </div>
+            </section>    
+        </main>
+
+        <script type="module" src="index.js" defer></script>
+    </body>
+
+</html>
