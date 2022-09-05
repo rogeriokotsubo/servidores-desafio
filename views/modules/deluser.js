@@ -14,21 +14,24 @@ export default async function deleteUser(_id){
     listUser();
     clearInputs();
     msg.innerHTML=`&nbsp`;
+    return true;
 }
 
-function _delUser(_id) {
-    return new Promise((resolve, reject) => {
-        const options = {method: "DELETE"}
-        fetch("/users/"+_id, options)
-            .then(resp => {
-                if (resp.status===200) {
-                    resolve(resp.json());  
-                } else {
-                    return Promise.reject(`${resp.status} - ${resp.statusText}`);
-                }
-            })
-            .catch(err => {
-                reject(err);
-            });
-    })
+async function _delUser(_id) {
+    const options = {method: "DELETE"}
+    try {
+        const response = await fetch("/users/"+_id, options);
+        if (response.status===406){
+            const message = await response.json();
+            throw new Error(message.message);
+        } else if (response.status===200) {
+            const resp = await response.json();
+            return resp;
+        } else {
+            throw new Error(`${[response.status]} - ${response.statusText}`);            
+        }  
+    }    
+    catch(error) {
+        throw new Error(error.message);
+    }    
 }    

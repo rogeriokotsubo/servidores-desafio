@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use("/users", route);
-app.use(express.static(dirViews));
+//app.use(express.static(dirViews));
+app.use(express.static("views"));
 
 app.listen(PORT, () => {console.log(`Servidor criado: http://192.168.15.34:${PORT}`)})

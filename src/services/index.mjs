@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import fsSync from "fs";
 import path from 'path';
 import {fileURLToPath} from 'url';
 
@@ -25,19 +26,29 @@ const dbPath = __dirname+"/users.json";
 
 async function loadData ()
 {
-    if(!fs.access(dbPath))
-    {
-        await fs.writeFile(dbPath, "[]");
+    try {
+        if(!fsSync.existsSync(dbPath))
+        {
+            await fs.writeFile(dbPath, "[]");
+        }
+        const fileText = await fs.readFile(dbPath);
+        userList = JSON.parse(fileText);
     }
-    const fileText = await fs.readFile(dbPath);
-    userList = JSON.parse(fileText);
+        catch(err){
+        console.log(err);
+    }        
 //    console.log(userList);
 }
 
 
 let userList = [];
 
-await loadData ();
+try {
+    await loadData ();
+}
+catch(err){
+    console.log(err);
+}        
 
 export { add, list, listbyId, update, del, userList, dbPath };
 

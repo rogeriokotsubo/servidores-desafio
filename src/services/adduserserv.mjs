@@ -20,6 +20,15 @@ export default function add (data)
         throw new Error('Email inválido!');
     }
 
+    for (let i=0; i<userList.length; i++){
+        if (userList[i].name.trim().toLowerCase()===data.name.trim().toLowerCase()){
+            throw new Error('Nome já existe!');
+        }
+        if (userList[i].email.trim().toLowerCase()===data.email.trim().toLowerCase()){
+            throw new Error('Email já existe!');
+        }
+    }
+
     data.id = userList.length + 1;
     data.deleted = false;
     userList.push(data);

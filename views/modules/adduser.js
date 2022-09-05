@@ -25,35 +25,36 @@ export default async function addNewUser(){
     listUser();
     clearInputs();
     msg.innerHTML=`&nbsp`;
+    return true;
 }
 
-function _addUser(_name, _email) {
-    return new Promise((resolve, reject) => {
-   
-        const data = {
-            "name": _name,
-            "email": _email
-        };
-    
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        };
-        
-        fetch("/users", options)
-            .then(resp => {
-                if (resp.status===201) {
-                    resolve(resp.json());  
-                } else {
-                    return Promise.reject(`${resp.status} - ${resp.statusText}`);
-                }
-            })
-            .catch(err => {
-                reject(err);
-            });
-    })
+async function _addUser(_name, _email) { 
+    const data = {
+        "name": _name,
+        "email": _email
+    };
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    };
+    try {
+        const response = await fetch("/users", options);
+        if (response.status===406){
+            const message = await response.json();
+            throw new Error(message.message);
+        } else if (response.status===201) {
+            const resp = await response.json();
+            return resp;
+        } else {
+            throw new Error(`${[response.status]} - ${response.statusText}`);            
+        }    
+    }    
+    catch(error) {
+        throw new Error(error.message);
+    }           
 }
 

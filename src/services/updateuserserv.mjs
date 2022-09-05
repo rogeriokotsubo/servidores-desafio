@@ -27,6 +27,17 @@ export default function update (data)
         throw new Error('Email inválido!');
     }
 
+    for (let i=0; i<userList.length; i++){
+        if (id!=userList[i].id){
+            if (userList[i].email.trim().toLowerCase()===data.email.trim().toLowerCase()){
+                throw new Error('Email já existe!');
+            }
+            if (userList[i].name.trim().toLowerCase()===data.name.trim().toLowerCase()){
+                throw new Error('Nome já existe!');
+            }
+        }    
+    }
+
     let userExists = false;
     for (let i=0; i<userList.length; i++){
         if (!userList[i].deleted && userList[i].id===id){
